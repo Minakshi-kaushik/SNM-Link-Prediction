@@ -22,51 +22,165 @@ st.set_page_config(page_title="GraphLink | Network Intelligence", page_icon="G",
 
 st.markdown("""
 <style>
-:root{--page:#F7F8F6;--card:#fff;--green:#315D46;--sage:#789985;--pale:#E8F0EA;--ink:#25352C;--muted:#718078;--line:#E4E9E5;--sand:#F2EBDD}
-.stApp{background:var(--page);color:var(--ink);min-height:100vh;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:1rem;line-height:1.55}
-[data-testid="stHeader"]{background:rgba(247,248,246,.96);height:2.2rem}
-.block-container{max-width:none!important;width:100%;padding:1.1rem clamp(1.5rem,2.1vw,2.25rem) 2rem!important}
-[data-testid="stSidebar"]{background:#fff;border-right:1px solid var(--line);width:270px!important;min-width:250px}
-[data-testid="stSidebar"]>div:first-child{padding:1.35rem 1.1rem}
-[data-testid="stSidebar"] label,[data-testid="stSidebar"] p{font-size:1rem!important;line-height:1.5}
-.sidebar-brand{font-size:1.75rem;font-weight:800;color:var(--green);letter-spacing:-.04em;line-height:1.2}
-.sidebar-kicker{font-size:.84rem!important;letter-spacing:.1em;color:var(--muted)!important;margin-top:.25rem}
-h1,h2,h3{color:var(--ink)!important;letter-spacing:-.03em;line-height:1.25}
-h1{font-size:2rem!important;margin:.3rem 0 .55rem!important}
-h2{font-size:1.55rem!important} h3{font-size:1.25rem!important}
-.stMarkdown p,.stMarkdown li,.stWrite,.stText{font-size:1rem;line-height:1.55;color:var(--muted)}
-[data-testid="stCaptionContainer"]{font-size:.85rem!important;line-height:1.45;color:var(--muted)}
-.site-title{text-align:center;color:var(--green);font-size:clamp(2rem,2.2vw,2.15rem);font-weight:800;letter-spacing:-.04em;line-height:1.2;margin:.15rem 0 .2rem}
-.site-subtitle{text-align:center;color:var(--muted);font-size:.9rem;letter-spacing:.13em;font-weight:650;margin:0 0 .8rem}
-.page-heading{text-align:center;color:var(--ink);font-size:clamp(1.9rem,2.2vw,2.1rem);font-weight:750;letter-spacing:-.035em;line-height:1.25;margin:.3rem 0}
-.page-description{text-align:center;color:var(--muted);font-size:1rem;line-height:1.55;margin:0 auto 1.1rem;max-width:1050px}
-.stat-card{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 3px 10px rgba(37,53,44,.055);padding:18px 20px;text-align:center;height:100%;min-height:112px;display:flex;flex-direction:column;justify-content:center}
-.stat-value{font-size:clamp(2.15rem,2.5vw,2.5rem);font-weight:750;line-height:1.12;color:var(--green)}
-.stat-label{font-size:1rem;color:var(--muted);font-weight:650;margin-top:7px}
-.status-strip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:.9rem 0 1rem}
-.status-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1fr 1fr;gap:16px;margin-top:10px}
-.status-label{font-size:.86rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);font-weight:750;line-height:1.35}
-.status-value{font-size:1rem;color:var(--ink);font-weight:650;margin-top:5px;line-height:1.4;overflow-wrap:anywhere}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px}
-.result-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:9px 0;display:flex;align-items:center;justify-content:space-between;min-height:76px;font-size:1rem}
-.pill{display:inline-block;border-radius:20px;padding:7px 12px;background:var(--pale);color:var(--green);font-size:.84rem;font-weight:700}
-div[data-testid="stMetric"]{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;min-height:100px}
-div[data-testid="stMetricLabel"]{font-size:1rem} div[data-testid="stMetricValue"]{color:var(--green);font-size:1.8rem}
-div.stButton>button[kind="primary"]{background:var(--green);color:#fff;border:1px solid var(--green);font-weight:700;border-radius:10px;min-height:2.9rem;font-size:1rem;padding:.55rem 1rem}
-div.stButton>button{border-color:var(--line);border-radius:10px;color:var(--green);min-height:2.75rem;font-size:1rem;padding:.5rem .9rem}
-[data-testid="stRadio"] label{font-size:1.04rem!important;line-height:1.45;padding:.45rem .55rem;margin:.08rem 0;border-radius:9px}
-[data-testid="stRadio"] label:has(input:checked){background:var(--pale);color:var(--green)!important;font-weight:700}
-.stSelectbox label,.stSlider label,.stCheckbox label,.stTextInput label,.stFileUploader label{font-size:1rem!important;font-weight:650;line-height:1.4}
-[data-baseweb="select"] *{font-size:1rem!important}
-[role="listbox"] [role="option"]{font-size:1rem!important;min-height:2.5rem}
-[data-testid="stFileUploader"]{font-size:.95rem!important}
-[data-testid="stExpander"] summary{font-size:1rem!important;min-height:2.8rem}
-[data-testid="stDataFrame"]{font-size:.95rem!important}
-[data-testid="stIFrame"] iframe{border:1px solid var(--line);border-radius:14px;background:#fff;width:100%}
-[data-testid="stPlotlyChart"]{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px}
-@media(min-width:1600px){.block-container{padding-left:2.1rem!important;padding-right:2.1rem!important}}
-@media(max-width:900px){[data-testid="stSidebar"]{width:250px!important;min-width:225px}.block-container{padding-left:1.2rem!important;padding-right:1.2rem!important}.status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:680px){.block-container{padding:.8rem .85rem 1.2rem!important}.site-title{font-size:1.85rem}.site-subtitle{font-size:.72rem}.page-heading{font-size:1.65rem}.stat-card{min-height:90px;padding:12px 7px}.stat-value{font-size:1.8rem}.stat-label{font-size:.86rem}.status-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.status-strip{padding:14px}.stMarkdown p,.stMarkdown li{font-size:.95rem}}
+:root {
+  --page:#F7F8F6; --card:#FFFFFF; --green:#315D46; --sage:#789985;
+  --pale:#E8F0EA; --ink:#25352C; --muted:#65736B; --line:#DDE5DF;
+  font-size:16px;
+}
+html, body { font-size:16px !important; }
+.stApp {
+  background:var(--page); color:var(--ink);
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  font-size:16px !important; line-height:1.55;
+}
+[data-testid="stAppViewContainer"], [data-testid="stMain"],
+[data-testid="stMainBlockContainer"] { font-size:16px !important; }
+[data-testid="stHeader"] { background:rgba(247,248,246,.97); height:2.8rem; }
+.block-container {
+  max-width:none !important; width:100% !important;
+  padding:1.5rem 2rem 2.5rem !important;
+}
+[data-testid="stSidebar"] {
+  background:#FFFFFF; border-right:1px solid var(--line);
+  width:300px !important; min-width:285px !important;
+}
+[data-testid="stSidebar"] > div:first-child { padding:1.5rem 1.25rem 2rem; }
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:.8rem; }
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+  font-size:16px !important; line-height:1.55 !important;
+}
+.sidebar-brand {
+  font-size:30px !important; font-weight:800; color:var(--green);
+  letter-spacing:-.04em; line-height:1.2;
+}
+.sidebar-kicker {
+  font-size:13px !important; letter-spacing:.12em;
+  color:var(--muted) !important; margin-top:5px;
+}
+h1,h2,h3 { color:var(--ink) !important; letter-spacing:-.025em; line-height:1.25; }
+h1 { font-size:34px !important; margin:.35rem 0 .7rem !important; }
+h2 { font-size:28px !important; margin:.5rem 0 .65rem !important; }
+h3 { font-size:22px !important; margin:.45rem 0 .6rem !important; }
+.stMarkdown p, .stMarkdown li, .stWrite, .stText,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li {
+  font-size:16px !important; line-height:1.6 !important;
+  color:var(--muted);
+}
+[data-testid="stCaptionContainer"] {
+  font-size:14px !important; line-height:1.5 !important; color:var(--muted);
+}
+.site-title {
+  text-align:center; color:var(--green); font-size:34px !important;
+  font-weight:800; letter-spacing:-.04em; line-height:1.2;
+  margin:.25rem 0 .3rem;
+}
+.site-subtitle {
+  text-align:center; color:var(--muted); font-size:13px !important;
+  letter-spacing:.14em; font-weight:700; margin:0 0 1rem;
+}
+.page-heading {
+  text-align:center; color:var(--ink); font-size:32px !important;
+  font-weight:750; letter-spacing:-.035em; line-height:1.25;
+  margin:.45rem 0 .35rem;
+}
+.page-description {
+  text-align:center; color:var(--muted); font-size:16px !important;
+  line-height:1.6; margin:0 auto 1.35rem; max-width:1100px;
+}
+.stat-card {
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  box-shadow:0 3px 12px rgba(37,53,44,.06); padding:22px 20px;
+  text-align:center; height:100%; min-height:122px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.stat-value { font-size:40px !important; font-weight:800; line-height:1.12; color:var(--green); }
+.stat-label { font-size:17px !important; color:var(--muted); font-weight:650; margin-top:9px; }
+.status-strip {
+  background:#fff; border:1px solid var(--line); border-radius:15px;
+  padding:19px 22px; margin:1rem 0 1.2rem;
+}
+.status-grid { display:grid; grid-template-columns:1.3fr 1fr 1.2fr 1fr 1fr; gap:20px; margin-top:12px; }
+.status-label {
+  font-size:13px !important; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--sage); font-weight:750; line-height:1.4;
+}
+.status-value {
+  font-size:16px !important; color:var(--ink); font-weight:650;
+  margin-top:6px; line-height:1.5; overflow-wrap:anywhere;
+}
+.card { background:#fff; border:1px solid var(--line); border-radius:15px; padding:24px 26px; }
+.result-row {
+  background:#fff; border:1px solid var(--line); border-radius:13px;
+  padding:18px 20px; margin:11px 0; display:flex;
+  align-items:center; justify-content:space-between; min-height:82px;
+  font-size:16px !important;
+}
+.pill { display:inline-block; border-radius:22px; padding:7px 12px; background:var(--pale); color:var(--green); font-size:13px !important; font-weight:750; }
+div[data-testid="stMetric"] {
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  padding:18px 20px; min-height:112px;
+}
+div[data-testid="stMetricLabel"] { font-size:16px !important; }
+div[data-testid="stMetricValue"] { color:var(--green); font-size:30px !important; }
+div.stButton > button {
+  border-color:var(--line); border-radius:10px; color:var(--green);
+  min-height:46px; font-size:16px !important; font-weight:650;
+  padding:10px 18px;
+}
+div.stButton > button[kind="primary"] {
+  background:var(--green); color:#fff; border:1px solid var(--green);
+  font-weight:700; min-height:48px; font-size:16px !important;
+}
+[data-testid="stRadio"] label {
+  font-size:16px !important; line-height:1.5 !important;
+  padding:9px 10px; margin:3px 0; border-radius:9px;
+}
+[data-testid="stRadio"] label:has(input:checked) { background:var(--pale); color:var(--green) !important; font-weight:700; }
+.stSelectbox label, .stSlider label, .stCheckbox label,
+.stTextInput label, .stFileUploader label {
+  font-size:15px !important; font-weight:650; line-height:1.45 !important;
+}
+[data-baseweb="select"], [data-baseweb="select"] *,
+[data-baseweb="input"] input, [data-baseweb="textarea"] textarea {
+  font-size:16px !important;
+}
+[role="listbox"] [role="option"] { font-size:16px !important; min-height:42px; }
+[data-testid="stFileUploader"] { font-size:15px !important; }
+[data-testid="stExpander"] summary { font-size:16px !important; min-height:48px; }
+[data-testid="stDataFrame"] { font-size:15px !important; }
+[data-testid="stIFrame"] iframe {
+  border:1px solid var(--line); border-radius:15px;
+  background:#fff; width:100%;
+}
+[data-testid="stPlotlyChart"] {
+  background:#fff; border:1px solid var(--line);
+  border-radius:14px; padding:10px;
+}
+hr { margin:1.5rem 0 !important; border-color:var(--line) !important; }
+@media (min-width:1600px) {
+  .block-container { padding-left:2.5rem !important; padding-right:2.5rem !important; }
+}
+@media (max-width:1100px) {
+  [data-testid="stSidebar"] { width:270px !important; min-width:255px !important; }
+  .block-container { padding-left:1.35rem !important; padding-right:1.35rem !important; }
+  .status-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  .block-container { padding:.9rem .9rem 1.5rem !important; }
+  .site-title { font-size:28px !important; }
+  .site-subtitle { font-size:11px !important; }
+  .page-heading { font-size:26px !important; }
+  h1 { font-size:28px !important; } h2 { font-size:24px !important; } h3 { font-size:20px !important; }
+  .stat-card { min-height:100px; padding:15px 8px; }
+  .stat-value { font-size:30px !important; }
+  .stat-label { font-size:14px !important; }
+  .status-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .status-strip { padding:15px; }
+  .stMarkdown p, .stMarkdown li { font-size:15px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -97,7 +211,7 @@ def read_upload(raw: bytes, filename: str, delimiter_choice: str, custom_delimit
 
 def render_graph(graph: nx.Graph, selected: object | None, candidates: list[object]) -> None:
     """Render the same wide network visualization above every page section."""
-    net = Network(height="550px", width="100%", bgcolor="#FFFFFF", font_color="#25352C", directed=graph.is_directed(), cdn_resources="in_line")
+    net = Network(height="620px", width="100%", bgcolor="#FFFFFF", font_color="#25352C", directed=graph.is_directed(), cdn_resources="in_line")
     net.barnes_hut(gravity=-3000, central_gravity=.15, spring_length=145, spring_strength=.04, damping=.16)
     for node in graph.nodes:
         if node == selected:
@@ -106,11 +220,11 @@ def render_graph(graph: nx.Graph, selected: object | None, candidates: list[obje
             fill, border = "#D6A868", "#B88548"
         else:
             fill, border = "#9CB7A3", "#789985"
-        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#E8F0EA", "border": "#315D46"}}, size=21 + min(graph.degree(node), 15), font={"size": 17, "color": "#25352C"})
+        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#E8F0EA", "border": "#315D46"}}, size=25 + min(graph.degree(node), 18), font={"size": 20, "color": "#25352C"})
     for left, right in graph.edges:
         net.add_edge(left, right, color={"color": "#D5DDD7", "highlight": "#789985"}, width=1.6)
     net.set_options(json.dumps({"interaction": {"hover": True, "navigationButtons": True, "keyboard": {"enabled": True}, "zoomView": True}, "nodes": {"borderWidth": 1.8}, "edges": {"smooth": {"type": "continuous"}}, "physics": {"stabilization": {"iterations": 180}}}))
-    components.html(net.generate_html(), height=565, scrolling=False)
+    components.html(net.generate_html(), height=635, scrolling=False)
 
 
 def describe_candidate(graph: nx.Graph, source: object, target: object, algorithm: str) -> str:
