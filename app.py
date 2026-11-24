@@ -22,51 +22,646 @@ st.set_page_config(page_title="GraphLink | Network Intelligence", page_icon="G",
 
 st.markdown("""
 <style>
-:root{--page:#F7F8F6;--card:#fff;--green:#315D46;--sage:#789985;--pale:#E8F0EA;--ink:#25352C;--muted:#718078;--line:#E4E9E5;--sand:#F2EBDD}
-.stApp{background:var(--page);color:var(--ink);min-height:100vh;font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:1rem;line-height:1.55}
-[data-testid="stHeader"]{background:rgba(247,248,246,.96);height:2.2rem}
-.block-container{max-width:none!important;width:100%;padding:1.1rem clamp(1.5rem,2.1vw,2.25rem) 2rem!important}
-[data-testid="stSidebar"]{background:#fff;border-right:1px solid var(--line);width:270px!important;min-width:250px}
-[data-testid="stSidebar"]>div:first-child{padding:1.35rem 1.1rem}
-[data-testid="stSidebar"] label,[data-testid="stSidebar"] p{font-size:1rem!important;line-height:1.5}
-.sidebar-brand{font-size:1.75rem;font-weight:800;color:var(--green);letter-spacing:-.04em;line-height:1.2}
-.sidebar-kicker{font-size:.84rem!important;letter-spacing:.1em;color:var(--muted)!important;margin-top:.25rem}
-h1,h2,h3{color:var(--ink)!important;letter-spacing:-.03em;line-height:1.25}
-h1{font-size:2rem!important;margin:.3rem 0 .55rem!important}
-h2{font-size:1.55rem!important} h3{font-size:1.25rem!important}
-.stMarkdown p,.stMarkdown li,.stWrite,.stText{font-size:1rem;line-height:1.55;color:var(--muted)}
-[data-testid="stCaptionContainer"]{font-size:.85rem!important;line-height:1.45;color:var(--muted)}
-.site-title{text-align:center;color:var(--green);font-size:clamp(2rem,2.2vw,2.15rem);font-weight:800;letter-spacing:-.04em;line-height:1.2;margin:.15rem 0 .2rem}
-.site-subtitle{text-align:center;color:var(--muted);font-size:.9rem;letter-spacing:.13em;font-weight:650;margin:0 0 .8rem}
-.page-heading{text-align:center;color:var(--ink);font-size:clamp(1.9rem,2.2vw,2.1rem);font-weight:750;letter-spacing:-.035em;line-height:1.25;margin:.3rem 0}
-.page-description{text-align:center;color:var(--muted);font-size:1rem;line-height:1.55;margin:0 auto 1.1rem;max-width:1050px}
-.stat-card{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:0 3px 10px rgba(37,53,44,.055);padding:18px 20px;text-align:center;height:100%;min-height:112px;display:flex;flex-direction:column;justify-content:center}
-.stat-value{font-size:clamp(2.15rem,2.5vw,2.5rem);font-weight:750;line-height:1.12;color:var(--green)}
-.stat-label{font-size:1rem;color:var(--muted);font-weight:650;margin-top:7px}
-.status-strip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:.9rem 0 1rem}
-.status-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1fr 1fr;gap:16px;margin-top:10px}
-.status-label{font-size:.86rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sage);font-weight:750;line-height:1.35}
-.status-value{font-size:1rem;color:var(--ink);font-weight:650;margin-top:5px;line-height:1.4;overflow-wrap:anywhere}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px}
-.result-row{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:9px 0;display:flex;align-items:center;justify-content:space-between;min-height:76px;font-size:1rem}
-.pill{display:inline-block;border-radius:20px;padding:7px 12px;background:var(--pale);color:var(--green);font-size:.84rem;font-weight:700}
-div[data-testid="stMetric"]{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 20px;min-height:100px}
-div[data-testid="stMetricLabel"]{font-size:1rem} div[data-testid="stMetricValue"]{color:var(--green);font-size:1.8rem}
-div.stButton>button[kind="primary"]{background:var(--green);color:#fff;border:1px solid var(--green);font-weight:700;border-radius:10px;min-height:2.9rem;font-size:1rem;padding:.55rem 1rem}
-div.stButton>button{border-color:var(--line);border-radius:10px;color:var(--green);min-height:2.75rem;font-size:1rem;padding:.5rem .9rem}
-[data-testid="stRadio"] label{font-size:1.04rem!important;line-height:1.45;padding:.45rem .55rem;margin:.08rem 0;border-radius:9px}
-[data-testid="stRadio"] label:has(input:checked){background:var(--pale);color:var(--green)!important;font-weight:700}
-.stSelectbox label,.stSlider label,.stCheckbox label,.stTextInput label,.stFileUploader label{font-size:1rem!important;font-weight:650;line-height:1.4}
-[data-baseweb="select"] *{font-size:1rem!important}
-[role="listbox"] [role="option"]{font-size:1rem!important;min-height:2.5rem}
-[data-testid="stFileUploader"]{font-size:.95rem!important}
-[data-testid="stExpander"] summary{font-size:1rem!important;min-height:2.8rem}
-[data-testid="stDataFrame"]{font-size:.95rem!important}
-[data-testid="stIFrame"] iframe{border:1px solid var(--line);border-radius:14px;background:#fff;width:100%}
-[data-testid="stPlotlyChart"]{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px}
-@media(min-width:1600px){.block-container{padding-left:2.1rem!important;padding-right:2.1rem!important}}
-@media(max-width:900px){[data-testid="stSidebar"]{width:250px!important;min-width:225px}.block-container{padding-left:1.2rem!important;padding-right:1.2rem!important}.status-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:680px){.block-container{padding:.8rem .85rem 1.2rem!important}.site-title{font-size:1.85rem}.site-subtitle{font-size:.72rem}.page-heading{font-size:1.65rem}.stat-card{min-height:90px;padding:12px 7px}.stat-value{font-size:1.8rem}.stat-label{font-size:.86rem}.status-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.status-strip{padding:14px}.stMarkdown p,.stMarkdown li{font-size:.95rem}}
+:root {
+  --page:#F5F7FA; --card:#FFFFFF; --navy:#24364B; --blue:#416A8A;
+  --blue-soft:#EAF1F6; --amber:#D6A34A; --ink:#1E293B;
+  --muted:#5B6778; --line:#DCE3EA; font-size:16px;
+}
+html, body { font-size:16px !important; }
+body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+  background:var(--page) !important; color:var(--ink) !important;
+  font-family:Inter,"Segoe UI",Arial,sans-serif !important;
+  font-size:18px !important; line-height:1.6 !important;
+}
+[data-testid="stHeader"] { background:rgba(245,247,250,.98) !important; height:3rem; }
+[data-testid="stMainBlockContainer"], .block-container {
+  max-width:none !important; width:100% !important;
+  padding:2rem 2.25rem 3rem !important; min-height:100vh;
+}
+/* Resize the actual sidebar section, not only its inner content. */
+section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+  width:300px !important; min-width:300px !important; max-width:300px !important;
+  flex:0 0 300px !important; background:#FFFFFF !important;
+  border-right:1px solid var(--line) !important;
+}
+section[data-testid="stSidebar"] > div,
+[data-testid="stSidebar"] > div:first-child {
+  width:100% !important; padding:1.7rem 1.35rem 2rem !important;
+}
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:1rem !important; }
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"] {
+  font-size:17px !important; line-height:1.6 !important; color:var(--ink) !important;
+}
+[data-testid="stSidebar"] h4 { font-size:18px !important; font-weight:750 !important; }
+.sidebar-brand {
+  display:block; overflow:visible; padding-top:8px; margin:0 0 4px;
+  font-size:32px !important; font-weight:800; color:var(--navy);
+  letter-spacing:-.04em; line-height:1.3;
+}
+.sidebar-kicker {
+  font-size:14px !important; letter-spacing:.12em;
+  color:var(--muted) !important; margin-top:4px;
+}
+h1,h2,h3 { color:var(--ink) !important; letter-spacing:-.025em; line-height:1.25 !important; }
+h1 { font-size:36px !important; margin:.5rem 0 .8rem !important; }
+h2 { font-size:30px !important; margin:.65rem 0 .8rem !important; }
+h3 { font-size:23px !important; margin:.55rem 0 .7rem !important; }
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3 { text-align:center !important; }
+.stMarkdown p, .stMarkdown li, .stWrite, .stText,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li,
+[data-testid="stText"] {
+  font-size:18px !important; line-height:1.65 !important;
+  color:var(--muted) !important;
+}
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] p {
+  font-size:16px !important; line-height:1.55 !important; color:var(--muted) !important;
+}
+.site-title {
+  display:block; overflow:visible; padding-top:12px; margin:.3rem 0 .45rem;
+  text-align:center; color:var(--navy); font-size:42px !important;
+  font-weight:850; letter-spacing:-.045em; line-height:1.25;
+}
+.site-subtitle {
+  text-align:center; color:var(--muted); font-size:15px !important;
+  letter-spacing:.15em; font-weight:750; margin:0 0 1.4rem;
+}
+.page-heading {
+  text-align:center; color:var(--ink); font-size:38px !important;
+  font-weight:800; letter-spacing:-.035em; line-height:1.25;
+  margin:.55rem 0 .45rem;
+}
+.page-description {
+  text-align:center; color:var(--muted); font-size:18px !important;
+  line-height:1.65; margin:0 auto 1.7rem; max-width:1200px;
+}
+.stat-card {
+  background:var(--card); border:1px solid var(--line); border-radius:18px;
+  box-shadow:0 4px 16px rgba(36,54,75,.07); padding:26px 22px;
+  text-align:center; height:100%; min-height:148px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.stat-value { font-size:46px !important; font-weight:850; line-height:1.12; color:var(--navy); }
+.stat-label { font-size:19px !important; color:var(--muted); font-weight:700; margin-top:11px; }
+.status-strip {
+  background:#fff; border:1px solid var(--line); border-radius:17px;
+  padding:28px 30px; margin:1.25rem 0 1.6rem;
+  box-shadow:0 3px 14px rgba(36,54,75,.045);
+}
+.status-strip > .status-label { font-size:18px !important; margin-bottom:12px; }
+.status-grid { display:grid; grid-template-columns:1.35fr 1fr 1.2fr 1fr 1fr; gap:24px; margin-top:14px; }
+.status-label {
+  font-size:15px !important; text-transform:uppercase; letter-spacing:.09em;
+  color:var(--blue); font-weight:800; line-height:1.45;
+}
+.status-value {
+  font-size:19px !important; color:var(--ink); font-weight:700;
+  margin-top:8px; line-height:1.55; overflow-wrap:anywhere;
+}
+.card { background:#fff; border:1px solid var(--line); border-radius:17px; padding:28px 30px; }
+.card h3 { text-align:left !important; font-size:22px !important; }
+.card p { font-size:17px !important; line-height:1.65 !important; }
+.result-row {
+  background:#fff; border:1px solid var(--line); border-radius:15px;
+  padding:22px 24px; margin:13px 0; display:flex;
+  align-items:center; justify-content:space-between; min-height:94px;
+  font-size:18px !important;
+}
+.pill { display:inline-block; border-radius:24px; padding:8px 14px; background:var(--blue-soft); color:var(--navy); font-size:14px !important; font-weight:800; }
+div[data-testid="stMetric"] {
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  padding:22px 24px; min-height:130px;
+}
+div[data-testid="stMetricLabel"], div[data-testid="stMetricLabel"] * { font-size:17px !important; }
+div[data-testid="stMetricValue"], div[data-testid="stMetricValue"] * { color:var(--navy) !important; font-size:34px !important; }
+div.stButton > button {
+  border:1px solid var(--line); border-radius:11px; color:var(--navy);
+  min-height:52px; font-size:17px !important; font-weight:700;
+  padding:12px 20px; background:#fff;
+}
+div.stButton > button[kind="primary"] {
+  background:var(--navy) !important; color:#fff !important;
+  border:1px solid var(--navy) !important;
+  font-weight:750; min-height:54px; font-size:17px !important;
+}
+[data-testid="stRadio"] label {
+  font-size:17px !important; line-height:1.55 !important;
+  padding:11px 12px; margin:5px 0; border-radius:10px;
+}
+[data-testid="stRadio"] label:has(input:checked) {
+  background:var(--blue-soft); color:var(--navy) !important; font-weight:750;
+}
+.stSelectbox label, .stSlider label, .stCheckbox label,
+.stTextInput label, .stFileUploader label,
+[data-testid="stWidgetLabel"] p {
+  font-size:16px !important; font-weight:700 !important; line-height:1.5 !important;
+}
+[data-baseweb="select"], [data-baseweb="select"] *,
+[data-baseweb="input"] input, [data-baseweb="textarea"] textarea {
+  font-size:17px !important;
+}
+[role="listbox"] [role="option"] { font-size:17px !important; min-height:46px; }
+[data-testid="stFileUploader"] { font-size:16px !important; }
+[data-testid="stExpander"] summary { font-size:17px !important; min-height:54px; }
+[data-testid="stDataFrame"] { font-size:16px !important; }
+[data-testid="stIFrame"] iframe {
+  border:1px solid var(--line); border-radius:17px;
+  background:#fff; width:100%;
+}
+[data-testid="stPlotlyChart"] {
+  background:#fff; border:1px solid var(--line);
+  border-radius:16px; padding:14px;
+}
+hr { margin:1.8rem 0 !important; border-color:var(--line) !important; }
+@media (min-width:1600px) {
+  .block-container { padding-left:2.75rem !important; padding-right:2.75rem !important; }
+}
+@media (max-width:1100px) {
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+    width:275px !important; min-width:275px !important; max-width:275px !important; flex-basis:275px !important;
+  }
+  .block-container { padding-left:1.5rem !important; padding-right:1.5rem !important; }
+  .status-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] { width:100% !important; min-width:0 !important; max-width:100% !important; }
+  .block-container { padding:1rem 1rem 1.6rem !important; }
+  .site-title { font-size:32px !important; }
+  .site-subtitle { font-size:12px !important; }
+  .page-heading { font-size:29px !important; }
+  h1 { font-size:30px !important; } h2 { font-size:26px !important; } h3 { font-size:21px !important; }
+  .stat-card { min-height:112px; padding:17px 10px; }
+  .stat-value { font-size:34px !important; }
+  .stat-label { font-size:15px !important; }
+  .status-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:17px; }
+  .status-strip { padding:19px; }
+  .stMarkdown p, .stMarkdown li { font-size:16px !important; }
+}
+
+/* Final component pass: make Streamlit's nested widgets inherit readable sizing. */
+.stApp [data-testid="stMarkdownContainer"] *,
+.stApp [data-testid="stText"],
+.stApp [data-testid="stAlert"] *,
+.stApp [data-testid="stExpander"] *,
+.stApp [data-testid="stFileUploader"] *,
+.stApp [data-testid="stRadio"] *,
+.stApp [data-testid="stSelectbox"] *,
+.stApp [data-testid="stSlider"] *,
+.stApp [data-testid="stCheckbox"] *,
+.stApp [data-testid="stTextInput"] * {
+  line-height:1.55 !important;
+}
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p { font-size:17px !important; }
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] > div {
+  gap:9px !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
+  display:flex !important; align-items:center !important;
+  min-height:48px !important; padding:10px 13px !important;
+  border:1px solid transparent; border-radius:11px !important;
+  font-size:17px !important; font-weight:650 !important;
+  color:var(--ink) !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+  background:var(--blue-soft) !important; border-color:#D2DFE9 !important;
+  color:var(--navy) !important; font-weight:800 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stExpander"] {
+  border:1px solid var(--line) !important; border-radius:13px !important;
+  background:#FBFCFD !important; overflow:hidden;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stExpander"] summary {
+  padding:12px 13px !important; min-height:52px !important;
+  font-size:16px !important; font-weight:750 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
+  padding:14px !important; border:1px dashed #AABAC8 !important;
+  border-radius:11px !important; background:#F8FAFC !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] button {
+  font-size:15px !important; min-height:40px !important;
+}
+.stApp [data-testid="stSidebar"] [data-baseweb="select"] {
+  min-height:46px !important; border-radius:9px !important;
+}
+.stApp [data-testid="stSidebar"] hr { margin:1.1rem 0 !important; }
+.stApp [data-testid="stAlert"] {
+  border-radius:12px !important; padding:14px 17px !important;
+}
+.stApp [data-testid="stDataFrame"] { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.stApp [data-testid="stDataFrame"] * { font-size:15px !important; }
+.stApp [data-testid="stPlotlyChart"] > div { width:100% !important; }
+.stApp [data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"] {
+  align-items:stretch;
+}
+.site-title {
+  font-size:46px !important; padding-top:18px !important;
+  padding-bottom:3px !important; min-height:72px;
+}
+.site-subtitle { font-size:15px !important; margin-bottom:1.6rem !important; }
+.page-heading { font-size:40px !important; }
+.page-description { font-size:18px !important; margin-bottom:1.8rem !important; }
+.status-strip { min-height:150px; }
+.status-grid > div { min-width:0; }
+.status-value { overflow-wrap:anywhere; }
+.stat-card { min-height:156px; }
+.result-row b { font-size:19px !important; }
+.result-row span { font-size:16px !important; line-height:1.55 !important; }
+@media (max-width:700px) {
+  .site-title { font-size:34px !important; min-height:58px; }
+  .page-heading { font-size:30px !important; }
+  .page-description { font-size:16px !important; }
+  .stApp [data-testid="stSidebar"] [data-testid="stRadio"] label { min-height:44px !important; }
+}
+
+/* High-visibility desktop typography and spacious component scale. */
+html { font-size:20px !important; }
+body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+  font-size:20px !important; line-height:1.65 !important;
+}
+[data-testid="stMainBlockContainer"], .block-container {
+  padding:2.25rem 2.6rem 3.5rem !important;
+}
+section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+  width:340px !important; min-width:340px !important; max-width:340px !important;
+  flex-basis:340px !important;
+}
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"],
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  font-size:20px !important; line-height:1.65 !important;
+}
+[data-testid="stSidebar"] h4 { font-size:22px !important; }
+.sidebar-brand { font-size:38px !important; }
+.sidebar-kicker { font-size:16px !important; }
+.site-title { font-size:54px !important; min-height:84px; padding-top:20px !important; }
+.site-subtitle { font-size:17px !important; }
+.page-heading { font-size:48px !important; margin:1rem 0 .6rem !important; }
+.page-description { font-size:21px !important; max-width:1400px; margin-bottom:2rem !important; }
+h1 { font-size:44px !important; }
+h2 { font-size:38px !important; }
+h3 { font-size:29px !important; }
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p,
+.stApp [data-testid="stCaptionContainer"] p {
+  font-size:19px !important; line-height:1.7 !important;
+}
+.stApp [data-testid="stCaptionContainer"] p { font-size:17px !important; }
+.stat-card {
+  min-height:190px !important; padding:32px 26px !important;
+  justify-content:center !important; align-items:center !important;
+}
+.stat-value { font-size:58px !important; }
+.stat-label { font-size:22px !important; margin-top:14px !important; }
+.status-strip { min-height:190px !important; padding:34px 36px !important; }
+.status-strip > .status-label { font-size:22px !important; text-align:center !important; }
+.status-grid { gap:30px !important; margin-top:20px !important; text-align:center !important; }
+.status-label { font-size:17px !important; }
+.status-value { font-size:22px !important; line-height:1.6 !important; }
+.card { padding:34px 36px !important; text-align:center !important; min-height:220px; }
+.card h3 { text-align:center !important; font-size:27px !important; }
+.card p { font-size:19px !important; }
+.pill { font-size:16px !important; padding:9px 16px !important; }
+.result-row { min-height:115px !important; padding:26px 30px !important; }
+.result-row b { font-size:22px !important; }
+.result-row span { font-size:18px !important; }
+div[data-testid="stMetric"] { min-height:160px !important; padding:28px !important; text-align:center !important; }
+div[data-testid="stMetricLabel"], div[data-testid="stMetricLabel"] * { font-size:20px !important; }
+div[data-testid="stMetricValue"], div[data-testid="stMetricValue"] * { font-size:42px !important; }
+div.stButton > button { min-height:62px !important; font-size:19px !important; }
+div.stButton > button[kind="primary"] { min-height:64px !important; font-size:19px !important; }
+.stSelectbox label, .stSlider label, .stCheckbox label,
+.stTextInput label, .stFileUploader label,
+[data-testid="stWidgetLabel"] p { font-size:19px !important; }
+[data-baseweb="select"], [data-baseweb="select"] *,
+[data-baseweb="input"] input, [data-baseweb="textarea"] textarea { font-size:19px !important; }
+[data-testid="stRadio"] label { font-size:19px !important; min-height:54px !important; }
+[data-testid="stExpander"] summary { font-size:19px !important; min-height:62px !important; }
+[data-testid="stDataFrame"] * { font-size:17px !important; }
+.network-section-title {
+  text-align:center; font-size:32px !important; font-weight:800;
+  color:var(--navy); margin:1.5rem 0 .5rem;
+}
+.network-section-help {
+  text-align:center; font-size:18px !important; color:var(--muted);
+  margin:0 0 1rem;
+}
+@media (max-width:1100px) {
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+    width:300px !important; min-width:300px !important; max-width:300px !important; flex-basis:300px !important;
+  }
+  .status-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  html { font-size:16px !important; }
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+  }
+  .site-title { font-size:36px !important; }
+  .page-heading { font-size:32px !important; }
+  .page-description { font-size:17px !important; }
+  h1 { font-size:32px !important; } h2 { font-size:28px !important; } h3 { font-size:23px !important; }
+  .stat-card { min-height:130px !important; }
+  .stat-value { font-size:40px !important; }
+  .stat-label { font-size:17px !important; }
+  .status-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px !important; }
+  .status-value { font-size:17px !important; }
+  .card { min-height:0; padding:22px !important; }
+}
+
+/* Accessibility override: prioritize legibility over dense dashboard styling. */
+:root {
+  font-size:22px !important;
+  --page:#F5F7FA; --card:#FFFFFF; --navy:#24364B; --blue:#416A8A;
+  --blue-soft:#EAF1F6; --amber:#D6A34A; --ink:#1E293B;
+  --muted:#465568; --line:#DCE3EA;
+}
+html, body, .stApp, [data-testid="stAppViewContainer"],
+[data-testid="stMain"], [data-testid="stMainBlockContainer"] {
+  font-size:22px !important;
+}
+.stApp p, .stApp li, .stApp label, .stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stCaptionContainer"] p,
+.stApp [data-testid="stWidgetLabel"] p,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p {
+  font-size:22px !important;
+  line-height:1.65 !important;
+  color:var(--muted) !important;
+}
+.stApp h1, .stApp [data-testid="stMarkdownContainer"] h1 { font-size:52px !important; line-height:1.2 !important; }
+.stApp h2, .stApp [data-testid="stMarkdownContainer"] h2 { font-size:44px !important; line-height:1.25 !important; }
+.stApp h3, .stApp [data-testid="stMarkdownContainer"] h3 { font-size:34px !important; line-height:1.3 !important; }
+.stApp [data-testid="stCaptionContainer"] p { font-size:19px !important; }
+.stApp [data-testid="stSidebar"],
+.stApp section[data-testid="stSidebar"] {
+  width:370px !important; min-width:370px !important;
+  max-width:370px !important; flex:0 0 370px !important;
+}
+.stApp section[data-testid="stSidebar"] > div,
+.stApp [data-testid="stSidebar"] > div:first-child,
+.stApp [data-testid="stSidebarContent"] {
+  width:100% !important; min-width:0 !important;
+  padding:28px 22px 32px !important;
+}
+.stApp [data-testid="stSidebar"] *,
+.stApp section[data-testid="stSidebar"] * {
+  font-size:20px !important;
+  line-height:1.6 !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-brand,
+.stApp section[data-testid="stSidebar"] .sidebar-brand {
+  font-size:42px !important; line-height:1.25 !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-kicker,
+.stApp section[data-testid="stSidebar"] .sidebar-kicker {
+  font-size:16px !important; letter-spacing:.12em !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
+  min-height:58px !important; padding:13px 14px !important;
+  font-size:20px !important; margin:6px 0 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
+.stApp [data-testid="stSidebar"] label { font-size:19px !important; }
+.stApp [data-testid="stSidebar"] [data-baseweb="select"],
+.stApp [data-testid="stSidebar"] [data-baseweb="select"] * {
+  font-size:19px !important; min-height:50px !important;
+}
+.stApp .site-title { font-size:60px !important; line-height:1.2 !important; min-height:92px !important; }
+.stApp .site-subtitle { font-size:19px !important; }
+.stApp .page-heading { font-size:54px !important; line-height:1.2 !important; }
+.stApp .page-description { font-size:22px !important; line-height:1.65 !important; max-width:1500px !important; }
+.stApp .stat-card { min-height:210px !important; padding:36px 28px !important; }
+.stApp .stat-value { font-size:68px !important; line-height:1.1 !important; }
+.stApp .stat-label { font-size:24px !important; line-height:1.4 !important; }
+.stApp .status-strip { min-height:210px !important; padding:38px 40px !important; }
+.stApp .status-strip > .status-label { font-size:24px !important; }
+.stApp .status-label { font-size:19px !important; }
+.stApp .status-value { font-size:24px !important; line-height:1.5 !important; }
+.stApp .card { min-height:250px !important; padding:38px 40px !important; }
+.stApp .card h3 { font-size:32px !important; }
+.stApp .card p { font-size:21px !important; line-height:1.7 !important; }
+.stApp .pill { font-size:18px !important; padding:10px 17px !important; }
+.stApp .result-row { min-height:130px !important; padding:28px 32px !important; font-size:22px !important; }
+.stApp .result-row b { font-size:25px !important; }
+.stApp .result-row span { font-size:20px !important; }
+.stApp div[data-testid="stMetricLabel"],
+.stApp div[data-testid="stMetricLabel"] * { font-size:22px !important; }
+.stApp div[data-testid="stMetricValue"],
+.stApp div[data-testid="stMetricValue"] * { font-size:48px !important; }
+.stApp div.stButton > button {
+  min-height:68px !important; font-size:21px !important; padding:16px 24px !important;
+}
+.stApp [data-testid="stSelectbox"] label,
+.stApp [data-testid="stSlider"] label,
+.stApp [data-testid="stCheckbox"] label,
+.stApp [data-testid="stTextInput"] label,
+.stApp [data-testid="stFileUploader"] label,
+.stApp [data-testid="stRadio"] label,
+.stApp [data-testid="stExpander"] summary {
+  font-size:20px !important; line-height:1.55 !important;
+}
+.stApp [data-baseweb="select"] *, .stApp [data-baseweb="input"] input,
+.stApp [data-baseweb="textarea"] textarea { font-size:20px !important; }
+.stApp [data-testid="stDataFrame"] * { font-size:18px !important; }
+.stApp .network-section-title { font-size:38px !important; }
+.stApp .network-section-help { font-size:20px !important; }
+.stApp [data-testid="stMainBlockContainer"], .stApp .block-container {
+  padding:34px 42px 54px !important;
+}
+@media (max-width:1100px) {
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:320px !important; min-width:320px !important;
+    max-width:320px !important; flex-basis:320px !important;
+  }
+}
+@media (max-width:700px) {
+  :root { font-size:17px !important; }
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+  }
+  .stApp .site-title { font-size:40px !important; }
+  .stApp .page-heading { font-size:36px !important; }
+  .stApp .stat-value { font-size:44px !important; }
+  .stApp .stat-label { font-size:18px !important; }
+  .stApp p, .stApp li { font-size:17px !important; }
+  .stApp h1 { font-size:36px !important; }
+  .stApp h2 { font-size:31px !important; }
+  .stApp h3 { font-size:25px !important; }
+}
+
+
+/* High-readability typography pass: prioritize legibility across every UI component. */
+:root { font-size:26px !important; }
+html, body, .stApp, .stApp *:not(svg):not(svg *) {
+  text-rendering: optimizeLegibility;
+}
+.stApp {
+  font-size:26px !important;
+}
+.stApp :is(p, li, label, span, small, strong, em, a, button,
+           input, textarea, select, summary, td, th, figcaption) {
+  font-size:26px !important;
+  line-height:1.65 !important;
+}
+.stApp :is([data-testid="stMarkdownContainer"] p,
+           [data-testid="stMarkdownContainer"] li,
+           [data-testid="stCaptionContainer"] p,
+           [data-testid="stAlert"] p,
+           [data-testid="stExpander"] p,
+           .stMarkdown p, .stMarkdown li) {
+  font-size:26px !important;
+  line-height:1.7 !important;
+  color:#34445a !important;
+}
+.stApp :is(small, [data-testid="stCaptionContainer"] p, .caption) {
+  font-size:22px !important;
+  line-height:1.6 !important;
+  color:#465568 !important;
+}
+/* Sidebar: larger navigation, labels, upload controls and more breathing room. */
+.stApp section[data-testid="stSidebar"],
+.stApp [data-testid="stSidebar"] {
+  width:410px !important; min-width:410px !important;
+  max-width:410px !important; flex:0 0 410px !important;
+}
+.stApp section[data-testid="stSidebar"] > div,
+.stApp [data-testid="stSidebar"] > div:first-child,
+.stApp [data-testid="stSidebarContent"] {
+  width:100% !important; min-width:0 !important;
+  padding:34px 26px 42px !important;
+}
+.stApp [data-testid="stSidebar"] :is(p, label, span, small, a, button) {
+  font-size:25px !important; line-height:1.65 !important;
+  color:#24364B !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-brand {
+  font-size:48px !important; line-height:1.25 !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-kicker {
+  font-size:21px !important; line-height:1.5 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] > div { gap:15px !important; }
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
+  min-height:74px !important; padding:18px 18px !important;
+  margin:8px 0 !important; border-radius:12px !important;
+  font-size:25px !important; font-weight:700 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label p {
+  font-size:25px !important;
+}
+.stApp [data-testid="stSidebar"] [data-baseweb="select"],
+.stApp [data-testid="stSidebar"] [data-baseweb="select"] * {
+  min-height:60px !important; font-size:24px !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] *,
+.stApp [data-testid="stSidebar"] [data-testid="stExpander"] summary {
+  font-size:23px !important; line-height:1.6 !important;
+}
+/* Main page hierarchy. */
+.stApp .site-title { font-size:68px !important; line-height:1.2 !important; }
+.stApp .site-subtitle { font-size:23px !important; }
+.stApp .page-heading { font-size:58px !important; line-height:1.2 !important; }
+.stApp .page-description { font-size:27px !important; line-height:1.65 !important; }
+.stApp h1, .stApp [data-testid="stMarkdownContainer"] h1 {
+  font-size:54px !important; line-height:1.25 !important;
+}
+.stApp h2, .stApp [data-testid="stMarkdownContainer"] h2 {
+  font-size:46px !important; line-height:1.3 !important;
+}
+.stApp h3, .stApp [data-testid="stMarkdownContainer"] h3 {
+  font-size:38px !important; line-height:1.35 !important;
+}
+.stApp .stat-card { min-height:240px !important; padding:42px 32px !important; }
+.stApp .stat-value { font-size:76px !important; }
+.stApp .stat-label { font-size:28px !important; line-height:1.5 !important; }
+.stApp .status-strip { min-height:230px !important; padding:42px 44px !important; }
+.stApp .status-strip > .status-label { font-size:28px !important; }
+.stApp .status-label { font-size:24px !important; }
+.stApp .status-value { font-size:28px !important; line-height:1.6 !important; }
+.stApp .card { padding:42px 44px !important; }
+.stApp .card h3 { font-size:36px !important; }
+.stApp .card p { font-size:26px !important; line-height:1.7 !important; }
+.stApp .pill { font-size:22px !important; }
+.stApp .result-row { min-height:150px !important; font-size:27px !important; }
+.stApp .result-row b { font-size:30px !important; }
+.stApp .result-row span { font-size:25px !important; }
+.stApp div[data-testid="stMetricLabel"],
+.stApp div[data-testid="stMetricLabel"] * { font-size:26px !important; }
+.stApp div[data-testid="stMetricValue"],
+.stApp div[data-testid="stMetricValue"] * { font-size:54px !important; }
+.stApp div.stButton > button,
+.stApp [data-testid="stDownloadButton"] button,
+.stApp [data-testid="stFormSubmitButton"] button {
+  min-height:78px !important; padding:19px 28px !important;
+  font-size:26px !important; line-height:1.4 !important;
+  font-weight:750 !important;
+}
+.stApp [data-testid="stSelectbox"] label,
+.stApp [data-testid="stSlider"] label,
+.stApp [data-testid="stCheckbox"] label,
+.stApp [data-testid="stTextInput"] label,
+.stApp [data-testid="stFileUploader"] label,
+.stApp [data-testid="stRadio"] label,
+.stApp [data-testid="stExpander"] summary,
+.stApp [data-testid="stWidgetLabel"] p {
+  font-size:25px !important; line-height:1.6 !important;
+}
+.stApp [data-baseweb="select"] *,
+.stApp [data-baseweb="input"] input,
+.stApp [data-baseweb="textarea"] textarea,
+.stApp [role="option"] {
+  font-size:25px !important; line-height:1.55 !important;
+}
+.stApp [data-testid="stDataFrame"] * { font-size:23px !important; }
+.stApp .network-section-title { font-size:42px !important; }
+.stApp .network-section-help { font-size:25px !important; }
+.stApp [data-testid="stMainBlockContainer"], .stApp .block-container {
+  padding:42px 48px 62px !important;
+}
+@media (max-width:1100px) {
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:340px !important; min-width:340px !important;
+    max-width:340px !important; flex-basis:340px !important;
+  }
+}
+@media (max-width:700px) {
+  :root { font-size:18px !important; }
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+  }
+  .stApp :is(p, li, label, span, small, a, button) {
+    font-size:18px !important; line-height:1.6 !important;
+  }
+  .stApp .site-title { font-size:42px !important; }
+  .stApp .page-heading { font-size:38px !important; }
+  .stApp .stat-value { font-size:46px !important; }
+  .stApp .stat-label { font-size:19px !important; }
+  .stApp h1 { font-size:38px !important; }
+  .stApp h2 { font-size:32px !important; }
+  .stApp h3 { font-size:26px !important; }
+  .stApp div.stButton > button { min-height:58px !important; font-size:19px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -97,20 +692,26 @@ def read_upload(raw: bytes, filename: str, delimiter_choice: str, custom_delimit
 
 def render_graph(graph: nx.Graph, selected: object | None, candidates: list[object]) -> None:
     """Render the same wide network visualization above every page section."""
-    net = Network(height="550px", width="100%", bgcolor="#FFFFFF", font_color="#25352C", directed=graph.is_directed(), cdn_resources="in_line")
-    net.barnes_hut(gravity=-3000, central_gravity=.15, spring_length=145, spring_strength=.04, damping=.16)
+    net = Network(height="900px", width="100%", bgcolor="#FFFFFF", font_color="#1E293B", directed=graph.is_directed(), cdn_resources="in_line")
+    net.barnes_hut(gravity=-3000, central_gravity=.15, spring_length=175, spring_strength=.04, damping=.16)
     for node in graph.nodes:
         if node == selected:
-            fill, border = "#315D46", "#244633"
+            fill, border = "#24364B", "#18283A"
         elif node in candidates:
-            fill, border = "#D6A868", "#B88548"
+            fill, border = "#D6A34A", "#B88732"
         else:
-            fill, border = "#9CB7A3", "#789985"
-        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#E8F0EA", "border": "#315D46"}}, size=21 + min(graph.degree(node), 15), font={"size": 17, "color": "#25352C"})
+            fill, border = "#6F91AE", "#416A8A"
+        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#EAF1F6", "border": "#24364B"}}, size=11 + min(graph.degree(node), 9), font={"size": 17, "color": "#1E293B"})
     for left, right in graph.edges:
-        net.add_edge(left, right, color={"color": "#D5DDD7", "highlight": "#789985"}, width=1.6)
-    net.set_options(json.dumps({"interaction": {"hover": True, "navigationButtons": True, "keyboard": {"enabled": True}, "zoomView": True}, "nodes": {"borderWidth": 1.8}, "edges": {"smooth": {"type": "continuous"}}, "physics": {"stabilization": {"iterations": 180}}}))
-    components.html(net.generate_html(), height=565, scrolling=False)
+        net.add_edge(left, right, color={"color": "#D5DDD7", "highlight": "#416A8A"}, width=1.6)
+    net.set_options(json.dumps({
+        "layout": {"improvedLayout": True, "randomSeed": 42},
+        "interaction": {"hover": True, "navigationButtons": True, "keyboard": {"enabled": True}, "zoomView": True, "dragView": True, "dragNodes": True},
+        "nodes": {"borderWidth": 1.8, "scaling": {"min": 10, "max": 22}, "font": {"size": 17, "face": "Arial"}},
+        "edges": {"smooth": {"type": "continuous"}, "color": {"opacity": 0.48}},
+        "physics": {"enabled": True, "solver": "barnesHut", "stabilization": {"enabled": True, "iterations": 1000, "updateInterval": 50, "fit": True}, "barnesHut": {"gravitationalConstant": -4200, "centralGravity": 0.18, "springLength": 190, "springConstant": 0.035, "damping": 0.18}}
+    }))
+    components.html(net.generate_html(), height=915, scrolling=False)
 
 
 def describe_candidate(graph: nx.Graph, source: object, target: object, algorithm: str) -> str:
@@ -214,7 +815,7 @@ st.markdown(f'''<div class="status-strip"><div class="status-label">Workspace st
 st.markdown("### Network visualization")
 st.caption("Drag nodes to arrange · scroll to zoom · pan with graph controls · hover for node ID and degree")
 render_graph(graph, selected_for_graph, candidates)
-st.markdown('<div><span style="color:#9CB7A3">●</span> Network node &nbsp;&nbsp; <span style="color:#315D46">●</span> Selected node &nbsp;&nbsp; <span style="color:#D6A868">●</span> Predicted candidate</div>', unsafe_allow_html=True)
+st.markdown('<div><span style="color:#6F91AE">●</span> Network node &nbsp;&nbsp; <span style="color:#24364B">●</span> Selected node &nbsp;&nbsp; <span style="color:#D6A34A">●</span> Predicted candidate</div>', unsafe_allow_html=True)
 st.divider()
 
 if page == "Overview":
@@ -298,7 +899,7 @@ elif page == "Link Prediction":
             st.markdown(f"<div class='card'><span class='pill'>{'DEMONSTRATION SCORES' if state['demo'] else 'GRAPH SCORES'}</span><h3>{html.escape(state['algorithm'])}</h3><p>Missing links from node {html.escape(str(state['source']))}</p></div>", unsafe_allow_html=True)
             for rank, (candidate, score) in enumerate(state["ranked"], 1):
                 explanation = describe_candidate(graph, state["source"], candidate, state["algorithm"])
-                st.markdown(f"<div class='result-row'><div><b style='color:#315D46'>#{rank:02d}</b> &nbsp; Node <b>{html.escape(str(candidate))}</b><br><span style='font-size:.9rem;color:#718078'>{html.escape(explanation)}</span></div><div style='text-align:right'><span class='status-label'>Score</span><br><b>{score:.4f}</b></div></div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='result-row'><div><b style='color:#24364B'>#{rank:02d}</b> &nbsp; Node <b>{html.escape(str(candidate))}</b><br><span style='font-size:.9rem;color:#5B6778'>{html.escape(explanation)}</span></div><div style='text-align:right'><span class='status-label'>Score</span><br><b>{score:.4f}</b></div></div>", unsafe_allow_html=True)
             st.caption(f"Scoring time: {state['elapsed']*1000:.2f} ms. This is not an evaluation benchmark.")
 
 elif page == "Algorithm Comparison":
@@ -324,7 +925,7 @@ elif page == "Algorithm Comparison":
                 else:
                     results["execution_time_ms"] = results["execution_time_seconds"] * 1000
                     chart_cols = st.columns(3)
-                    charts = [("AUC", "auc", "#789985"), ("Precision@K", "precision_at_k", "#315D46"), ("Execution time (ms)", "execution_time_ms", "#C19A62")]
+                    charts = [("AUC", "auc", "#416A8A"), ("Precision@K", "precision_at_k", "#24364B"), ("Execution time (ms)", "execution_time_ms", "#D6A34A")]
                     for col, (title, field, color) in zip(chart_cols, charts):
                         with col:
                             st.markdown(f"### {title}")
