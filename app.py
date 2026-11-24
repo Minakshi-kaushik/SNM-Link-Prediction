@@ -383,6 +383,130 @@ div.stButton > button[kind="primary"] { min-height:64px !important; font-size:19
   .status-value { font-size:17px !important; }
   .card { min-height:0; padding:22px !important; }
 }
+
+/* Accessibility override: prioritize legibility over dense dashboard styling. */
+:root {
+  font-size:22px !important;
+  --page:#F5F7FA; --card:#FFFFFF; --navy:#24364B; --blue:#416A8A;
+  --blue-soft:#EAF1F6; --amber:#D6A34A; --ink:#1E293B;
+  --muted:#465568; --line:#DCE3EA;
+}
+html, body, .stApp, [data-testid="stAppViewContainer"],
+[data-testid="stMain"], [data-testid="stMainBlockContainer"] {
+  font-size:22px !important;
+}
+.stApp p, .stApp li, .stApp label, .stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stCaptionContainer"] p,
+.stApp [data-testid="stWidgetLabel"] p,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p {
+  font-size:22px !important;
+  line-height:1.65 !important;
+  color:var(--muted) !important;
+}
+.stApp h1, .stApp [data-testid="stMarkdownContainer"] h1 { font-size:52px !important; line-height:1.2 !important; }
+.stApp h2, .stApp [data-testid="stMarkdownContainer"] h2 { font-size:44px !important; line-height:1.25 !important; }
+.stApp h3, .stApp [data-testid="stMarkdownContainer"] h3 { font-size:34px !important; line-height:1.3 !important; }
+.stApp [data-testid="stCaptionContainer"] p { font-size:19px !important; }
+.stApp [data-testid="stSidebar"],
+.stApp section[data-testid="stSidebar"] {
+  width:370px !important; min-width:370px !important;
+  max-width:370px !important; flex:0 0 370px !important;
+}
+.stApp section[data-testid="stSidebar"] > div,
+.stApp [data-testid="stSidebar"] > div:first-child,
+.stApp [data-testid="stSidebarContent"] {
+  width:100% !important; min-width:0 !important;
+  padding:28px 22px 32px !important;
+}
+.stApp [data-testid="stSidebar"] *,
+.stApp section[data-testid="stSidebar"] * {
+  font-size:20px !important;
+  line-height:1.6 !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-brand,
+.stApp section[data-testid="stSidebar"] .sidebar-brand {
+  font-size:42px !important; line-height:1.25 !important;
+}
+.stApp [data-testid="stSidebar"] .sidebar-kicker,
+.stApp section[data-testid="stSidebar"] .sidebar-kicker {
+  font-size:16px !important; letter-spacing:.12em !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
+  min-height:58px !important; padding:13px 14px !important;
+  font-size:20px !important; margin:6px 0 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
+.stApp [data-testid="stSidebar"] label { font-size:19px !important; }
+.stApp [data-testid="stSidebar"] [data-baseweb="select"],
+.stApp [data-testid="stSidebar"] [data-baseweb="select"] * {
+  font-size:19px !important; min-height:50px !important;
+}
+.stApp .site-title { font-size:60px !important; line-height:1.2 !important; min-height:92px !important; }
+.stApp .site-subtitle { font-size:19px !important; }
+.stApp .page-heading { font-size:54px !important; line-height:1.2 !important; }
+.stApp .page-description { font-size:22px !important; line-height:1.65 !important; max-width:1500px !important; }
+.stApp .stat-card { min-height:210px !important; padding:36px 28px !important; }
+.stApp .stat-value { font-size:68px !important; line-height:1.1 !important; }
+.stApp .stat-label { font-size:24px !important; line-height:1.4 !important; }
+.stApp .status-strip { min-height:210px !important; padding:38px 40px !important; }
+.stApp .status-strip > .status-label { font-size:24px !important; }
+.stApp .status-label { font-size:19px !important; }
+.stApp .status-value { font-size:24px !important; line-height:1.5 !important; }
+.stApp .card { min-height:250px !important; padding:38px 40px !important; }
+.stApp .card h3 { font-size:32px !important; }
+.stApp .card p { font-size:21px !important; line-height:1.7 !important; }
+.stApp .pill { font-size:18px !important; padding:10px 17px !important; }
+.stApp .result-row { min-height:130px !important; padding:28px 32px !important; font-size:22px !important; }
+.stApp .result-row b { font-size:25px !important; }
+.stApp .result-row span { font-size:20px !important; }
+.stApp div[data-testid="stMetricLabel"],
+.stApp div[data-testid="stMetricLabel"] * { font-size:22px !important; }
+.stApp div[data-testid="stMetricValue"],
+.stApp div[data-testid="stMetricValue"] * { font-size:48px !important; }
+.stApp div.stButton > button {
+  min-height:68px !important; font-size:21px !important; padding:16px 24px !important;
+}
+.stApp [data-testid="stSelectbox"] label,
+.stApp [data-testid="stSlider"] label,
+.stApp [data-testid="stCheckbox"] label,
+.stApp [data-testid="stTextInput"] label,
+.stApp [data-testid="stFileUploader"] label,
+.stApp [data-testid="stRadio"] label,
+.stApp [data-testid="stExpander"] summary {
+  font-size:20px !important; line-height:1.55 !important;
+}
+.stApp [data-baseweb="select"] *, .stApp [data-baseweb="input"] input,
+.stApp [data-baseweb="textarea"] textarea { font-size:20px !important; }
+.stApp [data-testid="stDataFrame"] * { font-size:18px !important; }
+.stApp .network-section-title { font-size:38px !important; }
+.stApp .network-section-help { font-size:20px !important; }
+.stApp [data-testid="stMainBlockContainer"], .stApp .block-container {
+  padding:34px 42px 54px !important;
+}
+@media (max-width:1100px) {
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:320px !important; min-width:320px !important;
+    max-width:320px !important; flex-basis:320px !important;
+  }
+}
+@media (max-width:700px) {
+  :root { font-size:17px !important; }
+  .stApp section[data-testid="stSidebar"],
+  .stApp [data-testid="stSidebar"] {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+  }
+  .stApp .site-title { font-size:40px !important; }
+  .stApp .page-heading { font-size:36px !important; }
+  .stApp .stat-value { font-size:44px !important; }
+  .stApp .stat-label { font-size:18px !important; }
+  .stApp p, .stApp li { font-size:17px !important; }
+  .stApp h1 { font-size:36px !important; }
+  .stApp h2 { font-size:31px !important; }
+  .stApp h3 { font-size:25px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
