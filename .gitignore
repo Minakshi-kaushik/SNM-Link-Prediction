@@ -1,0 +1,34 @@
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# Uploaded datasets
+data/uploads/
+data/raw/
+
+# Generated results (keep actual research results if needed)
+results/*.pkl
+results/*.tmp
