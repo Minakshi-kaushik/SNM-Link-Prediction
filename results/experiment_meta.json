@@ -1,0 +1,50 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "test_fraction": 0.1,
+  "negative_sampling": "uniform non-edges of the original graph, equal to #hidden edges",
+  "k_definition": "K = number of hidden test edges (also reported: K=100, K=1000)",
+  "rwr_parameters": {
+    "restart_probability": 0.15,
+    "max_iterations": 100
+  },
+  "datasets": {
+    "Facebook (ego-Facebook)": {
+      "source": "https://snap.stanford.edu/data/ego-Facebook.html",
+      "statistics": {
+        "nodes": 4039,
+        "edges": 88234,
+        "directed": false,
+        "density": 0.010819963503439287,
+        "avg_degree": 43.69101262688784,
+        "max_degree": 1045,
+        "avg_clustering": 0.6055467186200862,
+        "connected_components": 1,
+        "largest_component_nodes": 4039
+      },
+      "preprocessing": [
+        "duplicates collapsed",
+        "removed 0 self-loops",
+        "kept largest connected component (dropped 0 nodes)"
+      ]
+    }
+  },
+  "versions": {
+    "python": "3.12.3",
+    "networkx": "3.7",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  }
+}
