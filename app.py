@@ -508,112 +508,111 @@ html, body, .stApp, [data-testid="stAppViewContainer"],
   .stApp h3 { font-size:25px !important; }
 }
 
-/* Final global readability pass: no tiny supporting copy or undersized controls. */
-:root { font-size:22px !important; }
-html, body, .stApp, [data-testid="stAppViewContainer"],
-[data-testid="stMain"], [data-testid="stMainBlockContainer"] {
-  font-size:22px !important;
+
+/* High-readability typography pass: prioritize legibility across every UI component. */
+:root { font-size:26px !important; }
+html, body, .stApp, .stApp *:not(svg):not(svg *) {
+  text-rendering: optimizeLegibility;
 }
-.stApp [data-testid="stMarkdownContainer"] p,
-.stApp [data-testid="stMarkdownContainer"] li,
-.stApp [data-testid="stText"],
-.stApp [data-testid="stAlert"] p,
-.stApp [data-testid="stExpander"] p,
-.stApp [data-testid="stCaptionContainer"] p,
-.stApp .stMarkdown p,
-.stApp .stMarkdown li,
-.stApp .stWrite,
-.stApp .stText {
-  font-size:22px !important;
+.stApp {
+  font-size:26px !important;
+}
+.stApp :is(p, li, label, span, small, strong, em, a, button,
+           input, textarea, select, summary, td, th, figcaption) {
+  font-size:26px !important;
+  line-height:1.65 !important;
+}
+.stApp :is([data-testid="stMarkdownContainer"] p,
+           [data-testid="stMarkdownContainer"] li,
+           [data-testid="stCaptionContainer"] p,
+           [data-testid="stAlert"] p,
+           [data-testid="stExpander"] p,
+           .stMarkdown p, .stMarkdown li) {
+  font-size:26px !important;
   line-height:1.7 !important;
-  color:#465568 !important;
+  color:#34445a !important;
 }
-.stApp [data-testid="stCaptionContainer"] p,
-.stApp small, .stApp .caption {
-  font-size:19px !important;
+.stApp :is(small, [data-testid="stCaptionContainer"] p, .caption) {
+  font-size:22px !important;
   line-height:1.6 !important;
   color:#465568 !important;
 }
-.stApp [data-testid="stSidebar"],
-.stApp section[data-testid="stSidebar"] {
-  width:390px !important; min-width:390px !important;
-  max-width:390px !important; flex:0 0 390px !important;
+/* Sidebar: larger navigation, labels, upload controls and more breathing room. */
+.stApp section[data-testid="stSidebar"],
+.stApp [data-testid="stSidebar"] {
+  width:410px !important; min-width:410px !important;
+  max-width:410px !important; flex:0 0 410px !important;
 }
 .stApp section[data-testid="stSidebar"] > div,
 .stApp [data-testid="stSidebar"] > div:first-child,
 .stApp [data-testid="stSidebarContent"] {
   width:100% !important; min-width:0 !important;
-  padding:32px 25px 38px !important;
+  padding:34px 26px 42px !important;
 }
-.stApp [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
-.stApp [data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
-.stApp [data-testid="stSidebar"] label,
-.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label,
-.stApp [data-testid="stSidebar"] [data-testid="stSelectbox"] label {
-  font-size:21px !important; line-height:1.65 !important;
+.stApp [data-testid="stSidebar"] :is(p, label, span, small, a, button) {
+  font-size:25px !important; line-height:1.65 !important;
   color:#24364B !important;
 }
 .stApp [data-testid="stSidebar"] .sidebar-brand {
-  font-size:44px !important; line-height:1.25 !important;
+  font-size:48px !important; line-height:1.25 !important;
 }
 .stApp [data-testid="stSidebar"] .sidebar-kicker {
-  font-size:18px !important; line-height:1.5 !important;
+  font-size:21px !important; line-height:1.5 !important;
 }
-.stApp [data-testid="stSidebar"] [data-testid="stRadio"] > div {
-  gap:12px !important;
-}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] > div { gap:15px !important; }
 .stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
-  min-height:64px !important; padding:16px 17px !important;
-  margin:7px 0 !important; border-radius:12px !important;
-  font-size:21px !important; font-weight:700 !important;
+  min-height:74px !important; padding:18px 18px !important;
+  margin:8px 0 !important; border-radius:12px !important;
+  font-size:25px !important; font-weight:700 !important;
 }
 .stApp [data-testid="stSidebar"] [data-testid="stRadio"] label p {
-  font-size:21px !important;
+  font-size:25px !important;
 }
 .stApp [data-testid="stSidebar"] [data-baseweb="select"],
 .stApp [data-testid="stSidebar"] [data-baseweb="select"] * {
-  min-height:54px !important; font-size:20px !important;
+  min-height:60px !important; font-size:24px !important;
 }
 .stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] *,
 .stApp [data-testid="stSidebar"] [data-testid="stExpander"] summary {
-  font-size:19px !important; line-height:1.6 !important;
+  font-size:23px !important; line-height:1.6 !important;
 }
-.stApp .site-title { font-size:64px !important; line-height:1.2 !important; }
-.stApp .site-subtitle { font-size:20px !important; }
-.stApp .page-heading { font-size:56px !important; line-height:1.2 !important; }
-.stApp .page-description { font-size:23px !important; line-height:1.65 !important; }
+/* Main page hierarchy. */
+.stApp .site-title { font-size:68px !important; line-height:1.2 !important; }
+.stApp .site-subtitle { font-size:23px !important; }
+.stApp .page-heading { font-size:58px !important; line-height:1.2 !important; }
+.stApp .page-description { font-size:27px !important; line-height:1.65 !important; }
 .stApp h1, .stApp [data-testid="stMarkdownContainer"] h1 {
-  font-size:52px !important; line-height:1.25 !important;
+  font-size:54px !important; line-height:1.25 !important;
 }
 .stApp h2, .stApp [data-testid="stMarkdownContainer"] h2 {
-  font-size:44px !important; line-height:1.3 !important;
+  font-size:46px !important; line-height:1.3 !important;
 }
 .stApp h3, .stApp [data-testid="stMarkdownContainer"] h3 {
-  font-size:36px !important; line-height:1.35 !important;
+  font-size:38px !important; line-height:1.35 !important;
 }
-.stApp .stat-card { min-height:220px !important; padding:38px 30px !important; }
-.stApp .stat-value { font-size:72px !important; }
-.stApp .stat-label { font-size:25px !important; line-height:1.5 !important; }
-.stApp .status-strip { min-height:220px !important; padding:40px 42px !important; }
-.stApp .status-strip > .status-label { font-size:25px !important; }
-.stApp .status-label { font-size:20px !important; }
-.stApp .status-value { font-size:25px !important; line-height:1.6 !important; }
-.stApp .card { padding:40px 42px !important; }
-.stApp .card h3 { font-size:34px !important; }
-.stApp .card p { font-size:22px !important; line-height:1.7 !important; }
-.stApp .pill { font-size:19px !important; }
-.stApp .result-row { min-height:140px !important; font-size:23px !important; }
-.stApp .result-row b { font-size:26px !important; }
-.stApp .result-row span { font-size:21px !important; }
+.stApp .stat-card { min-height:240px !important; padding:42px 32px !important; }
+.stApp .stat-value { font-size:76px !important; }
+.stApp .stat-label { font-size:28px !important; line-height:1.5 !important; }
+.stApp .status-strip { min-height:230px !important; padding:42px 44px !important; }
+.stApp .status-strip > .status-label { font-size:28px !important; }
+.stApp .status-label { font-size:24px !important; }
+.stApp .status-value { font-size:28px !important; line-height:1.6 !important; }
+.stApp .card { padding:42px 44px !important; }
+.stApp .card h3 { font-size:36px !important; }
+.stApp .card p { font-size:26px !important; line-height:1.7 !important; }
+.stApp .pill { font-size:22px !important; }
+.stApp .result-row { min-height:150px !important; font-size:27px !important; }
+.stApp .result-row b { font-size:30px !important; }
+.stApp .result-row span { font-size:25px !important; }
 .stApp div[data-testid="stMetricLabel"],
-.stApp div[data-testid="stMetricLabel"] * { font-size:22px !important; }
+.stApp div[data-testid="stMetricLabel"] * { font-size:26px !important; }
 .stApp div[data-testid="stMetricValue"],
-.stApp div[data-testid="stMetricValue"] * { font-size:50px !important; }
+.stApp div[data-testid="stMetricValue"] * { font-size:54px !important; }
 .stApp div.stButton > button,
 .stApp [data-testid="stDownloadButton"] button,
 .stApp [data-testid="stFormSubmitButton"] button {
-  min-height:72px !important; padding:17px 26px !important;
-  font-size:22px !important; line-height:1.4 !important;
+  min-height:78px !important; padding:19px 28px !important;
+  font-size:26px !important; line-height:1.4 !important;
   font-weight:750 !important;
 }
 .stApp [data-testid="stSelectbox"] label,
@@ -624,44 +623,44 @@ html, body, .stApp, [data-testid="stAppViewContainer"],
 .stApp [data-testid="stRadio"] label,
 .stApp [data-testid="stExpander"] summary,
 .stApp [data-testid="stWidgetLabel"] p {
-  font-size:21px !important; line-height:1.55 !important;
+  font-size:25px !important; line-height:1.6 !important;
 }
 .stApp [data-baseweb="select"] *,
 .stApp [data-baseweb="input"] input,
 .stApp [data-baseweb="textarea"] textarea,
 .stApp [role="option"] {
-  font-size:21px !important; line-height:1.5 !important;
+  font-size:25px !important; line-height:1.55 !important;
 }
-.stApp [data-testid="stDataFrame"] * { font-size:19px !important; }
-.stApp .network-section-title { font-size:40px !important; }
-.stApp .network-section-help { font-size:21px !important; }
+.stApp [data-testid="stDataFrame"] * { font-size:23px !important; }
+.stApp .network-section-title { font-size:42px !important; }
+.stApp .network-section-help { font-size:25px !important; }
 .stApp [data-testid="stMainBlockContainer"], .stApp .block-container {
-  padding:38px 46px 58px !important;
+  padding:42px 48px 62px !important;
 }
 @media (max-width:1100px) {
   .stApp section[data-testid="stSidebar"],
   .stApp [data-testid="stSidebar"] {
-    width:330px !important; min-width:330px !important;
-    max-width:330px !important; flex-basis:330px !important;
+    width:340px !important; min-width:340px !important;
+    max-width:340px !important; flex-basis:340px !important;
   }
 }
 @media (max-width:700px) {
-  :root { font-size:17px !important; }
+  :root { font-size:18px !important; }
   .stApp section[data-testid="stSidebar"],
   .stApp [data-testid="stSidebar"] {
     width:100% !important; min-width:0 !important; max-width:100% !important;
   }
-  .stApp [data-testid="stMarkdownContainer"] p,
-  .stApp [data-testid="stMarkdownContainer"] li,
-  .stApp .stMarkdown p { font-size:17px !important; }
-  .stApp .site-title { font-size:40px !important; }
-  .stApp .page-heading { font-size:36px !important; }
-  .stApp .stat-value { font-size:44px !important; }
-  .stApp .stat-label { font-size:18px !important; }
-  .stApp h1 { font-size:36px !important; }
-  .stApp h2 { font-size:31px !important; }
-  .stApp h3 { font-size:25px !important; }
-  .stApp div.stButton > button { min-height:56px !important; font-size:18px !important; }
+  .stApp :is(p, li, label, span, small, a, button) {
+    font-size:18px !important; line-height:1.6 !important;
+  }
+  .stApp .site-title { font-size:42px !important; }
+  .stApp .page-heading { font-size:38px !important; }
+  .stApp .stat-value { font-size:46px !important; }
+  .stApp .stat-label { font-size:19px !important; }
+  .stApp h1 { font-size:38px !important; }
+  .stApp h2 { font-size:32px !important; }
+  .stApp h3 { font-size:26px !important; }
+  .stApp div.stButton > button { min-height:58px !important; font-size:19px !important; }
 }
 </style>
 """, unsafe_allow_html=True)
