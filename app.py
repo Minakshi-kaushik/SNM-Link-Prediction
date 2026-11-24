@@ -283,6 +283,106 @@ hr { margin:1.8rem 0 !important; border-color:var(--line) !important; }
   .page-description { font-size:16px !important; }
   .stApp [data-testid="stSidebar"] [data-testid="stRadio"] label { min-height:44px !important; }
 }
+
+/* High-visibility desktop typography and spacious component scale. */
+html { font-size:20px !important; }
+body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+  font-size:20px !important; line-height:1.65 !important;
+}
+[data-testid="stMainBlockContainer"], .block-container {
+  padding:2.25rem 2.6rem 3.5rem !important;
+}
+section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+  width:340px !important; min-width:340px !important; max-width:340px !important;
+  flex-basis:340px !important;
+}
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"],
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] [data-testid="stWidgetLabel"],
+[data-testid="stSidebar"] [data-testid="stRadio"] label {
+  font-size:20px !important; line-height:1.65 !important;
+}
+[data-testid="stSidebar"] h4 { font-size:22px !important; }
+.sidebar-brand { font-size:38px !important; }
+.sidebar-kicker { font-size:16px !important; }
+.site-title { font-size:54px !important; min-height:84px; padding-top:20px !important; }
+.site-subtitle { font-size:17px !important; }
+.page-heading { font-size:48px !important; margin:1rem 0 .6rem !important; }
+.page-description { font-size:21px !important; max-width:1400px; margin-bottom:2rem !important; }
+h1 { font-size:44px !important; }
+h2 { font-size:38px !important; }
+h3 { font-size:29px !important; }
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p,
+.stApp [data-testid="stCaptionContainer"] p {
+  font-size:19px !important; line-height:1.7 !important;
+}
+.stApp [data-testid="stCaptionContainer"] p { font-size:17px !important; }
+.stat-card {
+  min-height:190px !important; padding:32px 26px !important;
+  justify-content:center !important; align-items:center !important;
+}
+.stat-value { font-size:58px !important; }
+.stat-label { font-size:22px !important; margin-top:14px !important; }
+.status-strip { min-height:190px !important; padding:34px 36px !important; }
+.status-strip > .status-label { font-size:22px !important; text-align:center !important; }
+.status-grid { gap:30px !important; margin-top:20px !important; text-align:center !important; }
+.status-label { font-size:17px !important; }
+.status-value { font-size:22px !important; line-height:1.6 !important; }
+.card { padding:34px 36px !important; text-align:center !important; min-height:220px; }
+.card h3 { text-align:center !important; font-size:27px !important; }
+.card p { font-size:19px !important; }
+.pill { font-size:16px !important; padding:9px 16px !important; }
+.result-row { min-height:115px !important; padding:26px 30px !important; }
+.result-row b { font-size:22px !important; }
+.result-row span { font-size:18px !important; }
+div[data-testid="stMetric"] { min-height:160px !important; padding:28px !important; text-align:center !important; }
+div[data-testid="stMetricLabel"], div[data-testid="stMetricLabel"] * { font-size:20px !important; }
+div[data-testid="stMetricValue"], div[data-testid="stMetricValue"] * { font-size:42px !important; }
+div.stButton > button { min-height:62px !important; font-size:19px !important; }
+div.stButton > button[kind="primary"] { min-height:64px !important; font-size:19px !important; }
+.stSelectbox label, .stSlider label, .stCheckbox label,
+.stTextInput label, .stFileUploader label,
+[data-testid="stWidgetLabel"] p { font-size:19px !important; }
+[data-baseweb="select"], [data-baseweb="select"] *,
+[data-baseweb="input"] input, [data-baseweb="textarea"] textarea { font-size:19px !important; }
+[data-testid="stRadio"] label { font-size:19px !important; min-height:54px !important; }
+[data-testid="stExpander"] summary { font-size:19px !important; min-height:62px !important; }
+[data-testid="stDataFrame"] * { font-size:17px !important; }
+.network-section-title {
+  text-align:center; font-size:32px !important; font-weight:800;
+  color:var(--navy); margin:1.5rem 0 .5rem;
+}
+.network-section-help {
+  text-align:center; font-size:18px !important; color:var(--muted);
+  margin:0 0 1rem;
+}
+@media (max-width:1100px) {
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+    width:300px !important; min-width:300px !important; max-width:300px !important; flex-basis:300px !important;
+  }
+  .status-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media (max-width:700px) {
+  html { font-size:16px !important; }
+  section[data-testid="stSidebar"], [data-testid="stSidebar"] {
+    width:100% !important; min-width:0 !important; max-width:100% !important;
+  }
+  .site-title { font-size:36px !important; }
+  .page-heading { font-size:32px !important; }
+  .page-description { font-size:17px !important; }
+  h1 { font-size:32px !important; } h2 { font-size:28px !important; } h3 { font-size:23px !important; }
+  .stat-card { min-height:130px !important; }
+  .stat-value { font-size:40px !important; }
+  .stat-label { font-size:17px !important; }
+  .status-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px !important; }
+  .status-value { font-size:17px !important; }
+  .card { min-height:0; padding:22px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -313,7 +413,7 @@ def read_upload(raw: bytes, filename: str, delimiter_choice: str, custom_delimit
 
 def render_graph(graph: nx.Graph, selected: object | None, candidates: list[object]) -> None:
     """Render the same wide network visualization above every page section."""
-    net = Network(height="760px", width="100%", bgcolor="#FFFFFF", font_color="#1E293B", directed=graph.is_directed(), cdn_resources="in_line")
+    net = Network(height="900px", width="100%", bgcolor="#FFFFFF", font_color="#1E293B", directed=graph.is_directed(), cdn_resources="in_line")
     net.barnes_hut(gravity=-3000, central_gravity=.15, spring_length=175, spring_strength=.04, damping=.16)
     for node in graph.nodes:
         if node == selected:
@@ -322,11 +422,17 @@ def render_graph(graph: nx.Graph, selected: object | None, candidates: list[obje
             fill, border = "#D6A34A", "#B88732"
         else:
             fill, border = "#6F91AE", "#416A8A"
-        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#EAF1F6", "border": "#24364B"}}, size=18 + min(graph.degree(node), 12), font={"size": 18, "color": "#1E293B"})
+        net.add_node(node, label=str(node), title=f"Node {html.escape(str(node))}<br>Degree: {graph.degree(node)}", color={"background": fill, "border": border, "highlight": {"background": "#EAF1F6", "border": "#24364B"}}, size=11 + min(graph.degree(node), 9), font={"size": 17, "color": "#1E293B"})
     for left, right in graph.edges:
         net.add_edge(left, right, color={"color": "#D5DDD7", "highlight": "#416A8A"}, width=1.6)
-    net.set_options(json.dumps({"interaction": {"hover": True, "navigationButtons": True, "keyboard": {"enabled": True}, "zoomView": True}, "nodes": {"borderWidth": 1.8}, "edges": {"smooth": {"type": "continuous"}}, "physics": {"stabilization": {"iterations": 250}}}))
-    components.html(net.generate_html(), height=775, scrolling=False)
+    net.set_options(json.dumps({
+        "layout": {"improvedLayout": True, "randomSeed": 42},
+        "interaction": {"hover": True, "navigationButtons": True, "keyboard": {"enabled": True}, "zoomView": True, "dragView": True, "dragNodes": True},
+        "nodes": {"borderWidth": 1.8, "scaling": {"min": 10, "max": 22}, "font": {"size": 17, "face": "Arial"}},
+        "edges": {"smooth": {"type": "continuous"}, "color": {"opacity": 0.48}},
+        "physics": {"enabled": True, "solver": "barnesHut", "stabilization": {"enabled": True, "iterations": 1000, "updateInterval": 50, "fit": True}, "barnesHut": {"gravitationalConstant": -4200, "centralGravity": 0.18, "springLength": 190, "springConstant": 0.035, "damping": 0.18}}
+    }))
+    components.html(net.generate_html(), height=915, scrolling=False)
 
 
 def describe_candidate(graph: nx.Graph, source: object, target: object, algorithm: str) -> str:
