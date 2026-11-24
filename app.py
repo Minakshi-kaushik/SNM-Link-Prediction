@@ -204,6 +204,85 @@ hr { margin:1.8rem 0 !important; border-color:var(--line) !important; }
   .status-strip { padding:19px; }
   .stMarkdown p, .stMarkdown li { font-size:16px !important; }
 }
+
+/* Final component pass: make Streamlit's nested widgets inherit readable sizing. */
+.stApp [data-testid="stMarkdownContainer"] *,
+.stApp [data-testid="stText"],
+.stApp [data-testid="stAlert"] *,
+.stApp [data-testid="stExpander"] *,
+.stApp [data-testid="stFileUploader"] *,
+.stApp [data-testid="stRadio"] *,
+.stApp [data-testid="stSelectbox"] *,
+.stApp [data-testid="stSlider"] *,
+.stApp [data-testid="stCheckbox"] *,
+.stApp [data-testid="stTextInput"] * {
+  line-height:1.55 !important;
+}
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stAlert"] p,
+.stApp [data-testid="stExpander"] p { font-size:17px !important; }
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] > div {
+  gap:9px !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label {
+  display:flex !important; align-items:center !important;
+  min-height:48px !important; padding:10px 13px !important;
+  border:1px solid transparent; border-radius:11px !important;
+  font-size:17px !important; font-weight:650 !important;
+  color:var(--ink) !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+  background:var(--blue-soft) !important; border-color:#D2DFE9 !important;
+  color:var(--navy) !important; font-weight:800 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stExpander"] {
+  border:1px solid var(--line) !important; border-radius:13px !important;
+  background:#FBFCFD !important; overflow:hidden;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stExpander"] summary {
+  padding:12px 13px !important; min-height:52px !important;
+  font-size:16px !important; font-weight:750 !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] section {
+  padding:14px !important; border:1px dashed #AABAC8 !important;
+  border-radius:11px !important; background:#F8FAFC !important;
+}
+.stApp [data-testid="stSidebar"] [data-testid="stFileUploader"] button {
+  font-size:15px !important; min-height:40px !important;
+}
+.stApp [data-testid="stSidebar"] [data-baseweb="select"] {
+  min-height:46px !important; border-radius:9px !important;
+}
+.stApp [data-testid="stSidebar"] hr { margin:1.1rem 0 !important; }
+.stApp [data-testid="stAlert"] {
+  border-radius:12px !important; padding:14px 17px !important;
+}
+.stApp [data-testid="stDataFrame"] { border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+.stApp [data-testid="stDataFrame"] * { font-size:15px !important; }
+.stApp [data-testid="stPlotlyChart"] > div { width:100% !important; }
+.stApp [data-testid="stVerticalBlock"] > [data-testid="stHorizontalBlock"] {
+  align-items:stretch;
+}
+.site-title {
+  font-size:46px !important; padding-top:18px !important;
+  padding-bottom:3px !important; min-height:72px;
+}
+.site-subtitle { font-size:15px !important; margin-bottom:1.6rem !important; }
+.page-heading { font-size:40px !important; }
+.page-description { font-size:18px !important; margin-bottom:1.8rem !important; }
+.status-strip { min-height:150px; }
+.status-grid > div { min-width:0; }
+.status-value { overflow-wrap:anywhere; }
+.stat-card { min-height:156px; }
+.result-row b { font-size:19px !important; }
+.result-row span { font-size:16px !important; line-height:1.55 !important; }
+@media (max-width:700px) {
+  .site-title { font-size:34px !important; min-height:58px; }
+  .page-heading { font-size:30px !important; }
+  .page-description { font-size:16px !important; }
+  .stApp [data-testid="stSidebar"] [data-testid="stRadio"] label { min-height:44px !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
