@@ -15,7 +15,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from pyvis.network import Network
 
-from algorithms import SUPPORTED_ALGORITHMS, score_candidates
+from algorithms import RWR, SUPPORTED_ALGORITHMS, score_candidates
 from data_loader import graph_from_edge_table, load_dataset
 
 st.set_page_config(page_title="GraphLink | Network Intelligence", page_icon="G", layout="wide", initial_sidebar_state="expanded")
@@ -122,6 +122,8 @@ def describe_candidate(graph: nx.Graph, source: object, target: object, algorith
         return f"Neighborhood overlap: {len(shared)} of {len(union)} nodes"
     if algorithm == "Adamic-Adar":
         return f"Shared neighbors weighted by inverse log degree ({len(shared)} shared)"
+    if algorithm == RWR:
+        return "Random-walk-with-restart score from the selected source"
     return f"Degree product: {graph.degree(source)} x {graph.degree(target)}"
 
 
@@ -129,7 +131,7 @@ with st.sidebar:
     st.markdown('<div class="sidebar-brand">GraphLink</div><p class="sidebar-kicker">NETWORK INTELLIGENCE</p>', unsafe_allow_html=True)
     st.markdown("#### Dataset")
     uploaded_exists = st.session_state.uploaded_graph is not None
-    dataset_choices = ["Karate Club (demo)", "Email-Eu-core"] + ([st.session_state.uploaded_name or "Uploaded dataset"] if uploaded_exists else [])
+    dataset_choices = ["Karate Club (demo)", "Facebook (ego-Facebook)"] + ([st.session_state.uploaded_name or "Uploaded dataset"] if uploaded_exists else [])
     if st.session_state.get("dataset_choice") not in dataset_choices:
         st.session_state.dataset_choice = "Karate Club (demo)"
     dataset_name = st.selectbox("Current network", dataset_choices, key="dataset_choice")
@@ -266,25 +268,23 @@ elif page == "Link Prediction":
     with setup:
         st.markdown("### Prediction setup")
         source_node = st.selectbox("Source node", nodes, index=nodes.index(selected_for_graph), format_func=str, key="prediction_source")
-        algorithm = st.selectbox("Algorithm", [*SUPPORTED_ALGORITHMS, "Random Walk with Restart"], key="prediction_algorithm")
+        algorithm = st.selectbox("Algorithm", [*SUPPORTED_ALGORITHMS, RWR], key="prediction_algorithm")
         top_k = st.slider("Top-K recommendations", 1, 20, 5, key="prediction_top_k")
-        if algorithm == "Random Walk with Restart":
-            st.slider("Restart probability", .05, .95, .15, .05, key="rwr_restart")
-            st.info("RWR is available in the interface; the research implementation is not connected yet, so no prediction will be fabricated.")
+        restart_probability = st.slider("Restart probability", .05, .95, .15, .05, key="rwr_restart") if algorithm == RWR else None
+        if algorithm == RWR:
+            st.caption("Higher restart probability keeps the walk closer to the selected source.")
         if st.button("Run prediction", type="primary", use_container_width=True):
             st.session_state.selected_node = source_node
-            if algorithm == "Random Walk with Restart":
-                st.session_state.predictions = {"error": "Random Walk with Restart is not implemented yet. Its restart probability control is ready for backend integration."}
-            else:
-                try:
-                    with st.spinner(f"Scoring candidates with {algorithm}..."):
-                        started = time.perf_counter()
-                        ranked = score_candidates(graph, source_node, algorithm)
-                        elapsed = time.perf_counter() - started
-                    st.session_state.predictions = {"ranked": ranked[:top_k], "algorithm": algorithm, "source": source_node, "elapsed": elapsed, "demo": is_demo, "dataset": dataset_name}
-                except (ValueError, nx.NetworkXException) as exc:
-                    st.session_state.predictions = {"error": str(exc)}
-                st.rerun()
+            try:
+                with st.spinner(f"Scoring candidates with {algorithm}..."):
+                    started = time.perf_counter()
+                    params = {"restart_probability": restart_probability} if algorithm == RWR else {}
+                    ranked = score_candidates(graph, source_node, algorithm, **params)
+                    elapsed = time.perf_counter() - started
+                st.session_state.predictions = {"ranked": ranked[:top_k], "algorithm": algorithm, "source": source_node, "elapsed": elapsed, "demo": is_demo, "dataset": dataset_name}
+            except (ValueError, nx.NetworkXException, TypeError) as exc:
+                st.session_state.predictions = {"error": str(exc)}
+            st.rerun()
     with ranked_col:
         st.markdown("### Ranked candidate links")
         state = st.session_state.predictions
